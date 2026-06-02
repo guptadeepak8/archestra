@@ -2629,18 +2629,19 @@ async function persistNewMessages(
       }
 
       if (messagesToSave.length > 0) {
-        let messagesToStore: ChatMessage[];
+        // Strip base64 images / large tool results and drop assistant turns left
+        // non-renderable (e.g. only a dangling tool call) — persisting one of
+        // those yields a stuck-looking empty bubble on reload.
+        const messagesToStore = normalizeChatMessages(messagesToSave);
 
-        // Strip base64 images and large browser tool results before storing
         if (context === "onFinish") {
           // Log size reduction only for onFinish (where we have complete messages)
           const beforeSize = estimateMessagesSize(messagesToSave);
-          messagesToStore = normalizeChatMessages(messagesToSave);
           const afterSize = estimateMessagesSize(messagesToStore);
 
           logger.info(
             {
-              messageCount: messagesToSave.length,
+              messageCount: messagesToStore.length,
               beforeSizeKB: Math.round(beforeSize.length / 1024),
               afterSizeKB: Math.round(afterSize.length / 1024),
               savedKB: Math.round(
@@ -2651,25 +2652,24 @@ async function persistNewMessages(
             },
             "[Chat] Stripped messages before saving to DB",
           );
-        } else {
-          // For onError, just strip without detailed logging
-          messagesToStore = normalizeChatMessages(messagesToSave);
         }
 
-        const now = Date.now();
-        const messageData = messagesToStore.map((msg, index) => ({
-          conversationId,
-          role: msg.role ?? "assistant",
-          content: msg,
-          createdAt: new Date(now + index),
-        }));
+        if (messagesToStore.length > 0) {
+          const now = Date.now();
+          const messageData = messagesToStore.map((msg, index) => ({
+            conversationId,
+            role: msg.role ?? "assistant",
+            content: msg,
+            createdAt: new Date(now + index),
+          }));
 
-        await MessageModel.bulkCreate(messageData);
-        persistedCount += messagesToSave.length;
+          await MessageModel.bulkCreate(messageData);
+          persistedCount += messagesToStore.length;
 
-        logger.info(
-          `Appended ${messagesToSave.length} new messages to conversation ${conversationId} (${context})`,
-        );
+          logger.info(
+            `Appended ${messagesToStore.length} new messages to conversation ${conversationId} (${context})`,
+          );
+        }
       }
     }
 
