@@ -11871,7 +11871,7 @@ export type ImportAgentData = {
             /**
              * Connector type (e.g. confluence, github)
              */
-            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
         }>;
     };
     path?: never;
@@ -12895,7 +12895,7 @@ export type ExportAgentResponses = {
             /**
              * Connector type (e.g. confluence, github)
              */
-            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
         }>;
     };
 };
@@ -22238,97 +22238,6 @@ export type GetChatAttachmentContentErrors = {
 };
 
 export type GetChatAttachmentContentError = GetChatAttachmentContentErrors[keyof GetChatAttachmentContentErrors];
-
-export type PromoteChatAttachmentToKnowledgeFileData = {
-    body: {
-        visibility?: 'personal' | 'team' | 'org';
-        teamIds?: Array<string>;
-        agentIds?: Array<string>;
-    };
-    path: {
-        id: string;
-    };
-    query?: never;
-    url: '/api/chat/attachments/{id}/promote-to-knowledge-file';
-};
-
-export type PromoteChatAttachmentToKnowledgeFileErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type PromoteChatAttachmentToKnowledgeFileError = PromoteChatAttachmentToKnowledgeFileErrors[keyof PromoteChatAttachmentToKnowledgeFileErrors];
-
-export type PromoteChatAttachmentToKnowledgeFileResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        filename: string;
-        status: 'created' | 'duplicate' | 'unsupported' | 'too_large' | 'extraction_failed' | 'failed';
-        fileId?: string;
-    };
-};
-
-export type PromoteChatAttachmentToKnowledgeFileResponse = PromoteChatAttachmentToKnowledgeFileResponses[keyof PromoteChatAttachmentToKnowledgeFileResponses];
 
 export type ForkChatConversationData = {
     body: {
@@ -38281,7 +38190,7 @@ export type GetKnowledgeBasesResponses = {
             connectors: Array<{
                 id: string;
                 name: string;
-                connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+                connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
             }>;
             totalDocsIndexed: number;
             assignedAgents: Array<{
@@ -38759,7 +38668,7 @@ export type GetConnectorsData = {
         offset?: number;
         knowledgeBaseId?: string;
         search?: string;
-        connectorType?: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+        connectorType?: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
     };
     url: '/api/connectors';
 };
@@ -38841,7 +38750,7 @@ export type GetConnectorsResponses = {
             description: string | null;
             visibility: 'org-wide' | 'team-scoped';
             teamIds: Array<string>;
-            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
             config: {
                 type: 'jira';
                 jiraBaseUrl: unknown;
@@ -38916,8 +38825,6 @@ export type GetConnectorsResponses = {
                 maxDepth?: number;
                 fileTypes?: Array<string>;
                 batchSize?: number;
-            } | {
-                type: 'file_upload';
             } | {
                 type: 'dropbox';
                 rootPath?: string;
@@ -39014,7 +38921,7 @@ export type CreateConnectorData = {
         description?: string | null;
         visibility?: 'org-wide' | 'team-scoped';
         teamIds?: Array<string>;
-        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
         config: {
             type: 'jira';
             jiraBaseUrl: string;
@@ -39089,8 +38996,6 @@ export type CreateConnectorData = {
             maxDepth?: number;
             fileTypes?: Array<string>;
             batchSize?: number;
-        } | {
-            type: 'file_upload';
         } | {
             type: 'dropbox';
             rootPath?: string;
@@ -39245,7 +39150,7 @@ export type CreateConnectorResponses = {
         description: string | null;
         visibility: 'org-wide' | 'team-scoped';
         teamIds: Array<string>;
-        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
         config: {
             type: 'jira';
             jiraBaseUrl: unknown;
@@ -39320,8 +39225,6 @@ export type CreateConnectorResponses = {
             maxDepth?: number;
             fileTypes?: Array<string>;
             batchSize?: number;
-        } | {
-            type: 'file_upload';
         } | {
             type: 'dropbox';
             rootPath?: string;
@@ -39568,7 +39471,7 @@ export type GetConnectorResponses = {
         description: string | null;
         visibility: 'org-wide' | 'team-scoped';
         teamIds: Array<string>;
-        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
         config: {
             type: 'jira';
             jiraBaseUrl: unknown;
@@ -39643,8 +39546,6 @@ export type GetConnectorResponses = {
             maxDepth?: number;
             fileTypes?: Array<string>;
             batchSize?: number;
-        } | {
-            type: 'file_upload';
         } | {
             type: 'dropbox';
             rootPath?: string;
@@ -39803,8 +39704,6 @@ export type UpdateConnectorData = {
             fileTypes?: Array<string>;
             batchSize?: number;
         } | {
-            type: 'file_upload';
-        } | {
             type: 'dropbox';
             rootPath?: string;
             fileTypes?: Array<string>;
@@ -39959,7 +39858,7 @@ export type UpdateConnectorResponses = {
         description: string | null;
         visibility: 'org-wide' | 'team-scoped';
         teamIds: Array<string>;
-        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
         config: {
             type: 'jira';
             jiraBaseUrl: unknown;
@@ -40034,8 +39933,6 @@ export type UpdateConnectorResponses = {
             maxDepth?: number;
             fileTypes?: Array<string>;
             batchSize?: number;
-        } | {
-            type: 'file_upload';
         } | {
             type: 'dropbox';
             rootPath?: string;
@@ -40211,7 +40108,7 @@ export type GetConnectorDocumentsResponses = {
             chunkCount: number;
             createdAt: string;
             updatedAt: string;
-            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+            connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
         }>;
         pagination: {
             currentPage: number;
@@ -40408,7 +40305,7 @@ export type GetConnectorDocumentResponses = {
         chunkCount: number;
         createdAt: string;
         updatedAt: string;
-        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'file_upload' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
+        connectorType: 'jira' | 'confluence' | 'github' | 'gitlab' | 'servicenow' | 'notion' | 'sharepoint' | 'gdrive' | 'dropbox' | 'onedrive' | 'asana' | 'linear' | 'outline' | 'salesforce' | 'web_crawler' | 'perforce';
     };
 };
 
@@ -41154,673 +41051,6 @@ export type GetConnectorRunResponses = {
 };
 
 export type GetConnectorRunResponse = GetConnectorRunResponses[keyof GetConnectorRunResponses];
-
-export type GetKnowledgeFileUploadConfigData = {
-    body?: never;
-    path?: never;
-    query?: never;
-    url: '/api/knowledge-files/config';
-};
-
-export type GetKnowledgeFileUploadConfigErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type GetKnowledgeFileUploadConfigError = GetKnowledgeFileUploadConfigErrors[keyof GetKnowledgeFileUploadConfigErrors];
-
-export type GetKnowledgeFileUploadConfigResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        maxFileSizeBytes: number;
-        externalBlobStorageEnabled: boolean;
-        blobStorageProvider: string;
-    };
-};
-
-export type GetKnowledgeFileUploadConfigResponse = GetKnowledgeFileUploadConfigResponses[keyof GetKnowledgeFileUploadConfigResponses];
-
-export type GetKnowledgeFilesData = {
-    body?: never;
-    path?: never;
-    query?: {
-        limit?: number;
-        offset?: number;
-        search?: string;
-    };
-    url: '/api/knowledge-files';
-};
-
-export type GetKnowledgeFilesErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type GetKnowledgeFilesError = GetKnowledgeFilesErrors[keyof GetKnowledgeFilesErrors];
-
-export type GetKnowledgeFilesResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        data: Array<{
-            id: string;
-            connectorId: string;
-            ownerId?: string | null;
-            visibility: 'personal' | 'team' | 'org';
-            teamIds: Array<string>;
-            originalName: string;
-            mimeType: string;
-            fileSize: number;
-            contentHash: string;
-            blobStorageProvider?: string | null;
-            createdAt: string;
-            processingStatus: 'pending' | 'processing' | 'completed' | 'failed';
-            processingError: string | null;
-            embeddingStatus: 'pending' | 'processing' | 'completed' | 'failed';
-            assignedAgents: Array<{
-                id: string;
-                name: string;
-                agentType: string;
-            }>;
-        }>;
-        pagination: {
-            currentPage: number;
-            limit: number;
-            total: number;
-            totalPages: number;
-            hasNext: boolean;
-            hasPrev: boolean;
-        };
-    };
-};
-
-export type GetKnowledgeFilesResponse = GetKnowledgeFilesResponses[keyof GetKnowledgeFilesResponses];
-
-export type UploadKnowledgeFilesData = {
-    body: {
-        visibility?: 'personal' | 'team' | 'org';
-        teamIds?: Array<string>;
-        agentIds?: Array<string>;
-        files: Array<{
-            name: string;
-            mimeType: string;
-            content: string;
-        }>;
-    };
-    path?: never;
-    query?: never;
-    url: '/api/knowledge-files';
-};
-
-export type UploadKnowledgeFilesErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type UploadKnowledgeFilesError = UploadKnowledgeFilesErrors[keyof UploadKnowledgeFilesErrors];
-
-export type UploadKnowledgeFilesResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        results: Array<{
-            filename: string;
-            status: 'created' | 'duplicate' | 'unsupported' | 'too_large' | 'extraction_failed' | 'failed';
-            fileId?: string;
-        }>;
-    };
-};
-
-export type UploadKnowledgeFilesResponse = UploadKnowledgeFilesResponses[keyof UploadKnowledgeFilesResponses];
-
-export type DeleteKnowledgeFileData = {
-    body?: never;
-    path: {
-        fileId: string;
-    };
-    query?: never;
-    url: '/api/knowledge-files/{fileId}';
-};
-
-export type DeleteKnowledgeFileErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type DeleteKnowledgeFileError = DeleteKnowledgeFileErrors[keyof DeleteKnowledgeFileErrors];
-
-export type DeleteKnowledgeFileResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        success: boolean;
-    };
-};
-
-export type DeleteKnowledgeFileResponse = DeleteKnowledgeFileResponses[keyof DeleteKnowledgeFileResponses];
-
-export type GetKnowledgeFileData = {
-    body?: never;
-    path: {
-        fileId: string;
-    };
-    query?: never;
-    url: '/api/knowledge-files/{fileId}';
-};
-
-export type GetKnowledgeFileErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type GetKnowledgeFileError = GetKnowledgeFileErrors[keyof GetKnowledgeFileErrors];
-
-export type GetKnowledgeFileResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        id: string;
-        connectorId: string;
-        ownerId?: string | null;
-        visibility: 'personal' | 'team' | 'org';
-        teamIds: Array<string>;
-        originalName: string;
-        mimeType: string;
-        fileSize: number;
-        contentHash: string;
-        blobStorageProvider?: string | null;
-        createdAt: string;
-        processingStatus: 'pending' | 'processing' | 'completed' | 'failed';
-        processingError: string | null;
-        embeddingStatus: 'pending' | 'processing' | 'completed' | 'failed';
-        assignedAgents: Array<{
-            id: string;
-            name: string;
-            agentType: string;
-        }>;
-    };
-};
-
-export type GetKnowledgeFileResponse = GetKnowledgeFileResponses[keyof GetKnowledgeFileResponses];
-
-export type UpdateKnowledgeFileData = {
-    body: {
-        visibility: 'personal' | 'team' | 'org';
-        teamIds?: Array<string>;
-        agentIds?: Array<string>;
-    };
-    path: {
-        fileId: string;
-    };
-    query?: never;
-    url: '/api/knowledge-files/{fileId}';
-};
-
-export type UpdateKnowledgeFileErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type UpdateKnowledgeFileError = UpdateKnowledgeFileErrors[keyof UpdateKnowledgeFileErrors];
-
-export type UpdateKnowledgeFileResponses = {
-    /**
-     * Default Response
-     */
-    200: {
-        id: string;
-        connectorId: string;
-        ownerId?: string | null;
-        visibility: 'personal' | 'team' | 'org';
-        teamIds: Array<string>;
-        originalName: string;
-        mimeType: string;
-        fileSize: number;
-        contentHash: string;
-        blobStorageProvider?: string | null;
-        createdAt: string;
-        processingStatus: 'pending' | 'processing' | 'completed' | 'failed';
-        processingError: string | null;
-        embeddingStatus: 'pending' | 'processing' | 'completed' | 'failed';
-        assignedAgents: Array<{
-            id: string;
-            name: string;
-            agentType: string;
-        }>;
-    };
-};
-
-export type UpdateKnowledgeFileResponse = UpdateKnowledgeFileResponses[keyof UpdateKnowledgeFileResponses];
-
-export type GetKnowledgeFileContentData = {
-    body?: never;
-    path: {
-        fileId: string;
-    };
-    query?: {
-        download?: boolean;
-    };
-    url: '/api/knowledge-files/{fileId}/content';
-};
-
-export type GetKnowledgeFileContentErrors = {
-    /**
-     * Default Response
-     */
-    400: {
-        error: {
-            message: string;
-            type: 'api_validation_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    401: {
-        error: {
-            message: string;
-            type: 'api_authentication_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    403: {
-        error: {
-            message: string;
-            type: 'api_authorization_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    404: {
-        error: {
-            message: string;
-            type: 'api_not_found_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    409: {
-        error: {
-            message: string;
-            type: 'api_conflict_error';
-            internal_code?: string;
-        };
-    };
-    /**
-     * Default Response
-     */
-    500: {
-        error: {
-            message: string;
-            type: 'api_internal_server_error';
-            internal_code?: string;
-        };
-    };
-};
-
-export type GetKnowledgeFileContentError = GetKnowledgeFileContentErrors[keyof GetKnowledgeFileContentErrors];
 
 export type GetLimitsData = {
     body?: never;

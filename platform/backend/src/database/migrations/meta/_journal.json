@@ -2080,6 +2080,13 @@
       "when": 1781891433454,
       "tag": "0296_filesystem_file_storage",
       "breakpoints": true
+    },
+    {
+      "idx": 297,
+      "version": "7",
+      "when": 1781899258905,
+      "tag": "0297_remove_knowledge_files",
+      "breakpoints": true
     }
   ]
 }
