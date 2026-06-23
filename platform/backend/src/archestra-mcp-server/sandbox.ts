@@ -16,7 +16,6 @@ import logger from "@/logging";
 import {
   AgentModel,
   ConversationAttachmentModel,
-  ConversationFileTouchModel,
   EnvironmentModel,
   FileNameExistsError,
   SkillSandboxConversationGoneError,
@@ -765,8 +764,7 @@ const registry = defineArchestraTools([
           data: loaded.data,
           mimeType: loaded.mimeType,
           originalName: loaded.originalName,
-          // PFS-sourced uploads are marked so the conversation Files panel
-          // can show which persistent files the agent touched here.
+          // Tag the upload's origin: a PFS "my_file" pull vs an inline source.
           origin: args.source.type === "my_file" ? "my_file" : null,
         });
 
@@ -779,26 +777,6 @@ const registry = defineArchestraTools([
           },
           "[Sandbox] file uploaded",
         );
-
-        // Pulling a persistent file into the sandbox is a "read" — record it so
-        // the chat Files panel shows the files the agent actually touched. The
-        // upload already succeeded, so this is best-effort: a failure is logged,
-        // not surfaced as a failed tool call.
-        if (loaded.sourceFileId && context.conversationId) {
-          const { conversationId } = context;
-          const { sourceFileId } = loaded;
-          void ConversationFileTouchModel.recordTouch({
-            organizationId: guard.userCtx.organizationId,
-            conversationId,
-            fileId: sourceFileId,
-            touchKind: "read",
-          }).catch((error) => {
-            logger.warn(
-              { error, conversationId, fileId: sourceFileId },
-              "[Sandbox] failed to record file touch",
-            );
-          });
-        }
 
         return structuredSuccessResult(
           { ...result },
@@ -941,11 +919,6 @@ const registry = defineArchestraTools([
               `${downloadHint}copy it into the sandbox with upload_file and inspect it with run_command.`,
           );
         }
-        recordReadTouch({
-          organizationId: guard.userCtx.organizationId,
-          conversationId: context.conversationId,
-          fileId,
-        });
         logger.info(
           { fileId, sizeBytes: data.byteLength, mimeType: imageMime },
           "[Sandbox] image read from PFS",
@@ -991,12 +964,6 @@ const registry = defineArchestraTools([
             `${downloadHint}copy it into the sandbox with upload_file and process it with run_command.`,
         );
       }
-
-      recordReadTouch({
-        organizationId: guard.userCtx.organizationId,
-        conversationId: context.conversationId,
-        fileId,
-      });
 
       if (data.byteLength === 0) {
         logger.info({ fileId, sizeBytes: 0 }, "[Sandbox] file read from PFS");
@@ -1329,21 +1296,6 @@ const registry = defineArchestraTools([
         },
         "[Sandbox] file edited in PFS",
       );
-
-      if (context.conversationId) {
-        const { conversationId } = context;
-        void ConversationFileTouchModel.recordTouch({
-          organizationId: guard.userCtx.organizationId,
-          conversationId,
-          fileId: updated.id,
-          touchKind: "edit",
-        }).catch((error) => {
-          logger.warn(
-            { error, conversationId, fileId: updated.id },
-            "[Sandbox] failed to record file touch",
-          );
-        });
-      }
 
       const downloadUrl = `/api/skill-sandbox/artifacts/${updated.id}`;
       return structuredSuccessResult(
@@ -1708,8 +1660,6 @@ interface LoadedUpload {
   data: Buffer;
   mimeType?: string;
   originalName?: string;
-  /** Set for my_file sources — the PFS file the agent pulled in, for touch tracking. */
-  sourceFileId?: string;
 }
 
 /**
@@ -1824,31 +1774,6 @@ function saveResultSuccess(params: {
       `Download URL (use this for links): ${downloadUrl}`,
     ].join("\n"),
   );
-}
-
-/**
- * Best-effort record that the agent read a persistent file in this conversation
- * (powers the chat Files panel). No-op without a conversation or a backing row
- * (hand-placed files have no row to touch). Failures are logged, never surfaced.
- */
-function recordReadTouch(params: {
-  organizationId: string;
-  conversationId: string | undefined;
-  fileId: string | null;
-}): void {
-  const { organizationId, conversationId, fileId } = params;
-  if (!conversationId || !fileId) return;
-  void ConversationFileTouchModel.recordTouch({
-    organizationId,
-    conversationId,
-    fileId,
-    touchKind: "read",
-  }).catch((error) => {
-    logger.warn(
-      { error, conversationId, fileId },
-      "[Sandbox] failed to record file touch",
-    );
-  });
 }
 
 /** Map a my_file resolution failure to a model-facing message. */
@@ -2028,9 +1953,6 @@ async function loadUploadSource(params: {
         data: resolved.data,
         mimeType: resolved.mimeType,
         originalName: resolved.originalName,
-        // null (an untracked, hand-placed object with no row) → undefined: there
-        // is no files row to record a conversation touch against.
-        sourceFileId: resolved.fileId ?? undefined,
       };
     }
   }
