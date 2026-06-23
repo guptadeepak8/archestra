@@ -1312,7 +1312,6 @@ export const requiredEndpointPermissionsMap: Partial<
   // URL, so a role allowed to produce an artifact can also fetch it.
   [RouteId.GetSkillSandboxArtifact]: { sandbox: ["execute"] },
   [RouteId.GetSkillSandboxConversationArtifacts]: { sandbox: ["execute"] },
-  [RouteId.GetSkillSandboxFiles]: { sandbox: ["execute"] },
   [RouteId.CreateProject]: { project: ["create"] },
   [RouteId.GetProjects]: { project: ["read"] },
   [RouteId.GetProject]: { project: ["read"] },
@@ -1402,9 +1401,6 @@ export const requiredPagePermissionsMap: Record<string, Permissions> = {
   // Chat
   "/chat": { chat: ["read"] },
   "/chat/[conversationId]": { chat: ["read"] },
-
-  // My Files
-  "/my-files": { sandbox: ["execute"] },
 
   // Projects
   "/projects": { project: ["read"] },
