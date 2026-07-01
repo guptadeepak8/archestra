@@ -1,6 +1,6 @@
-import { describe, expect, test } from "@/test";
+import { describe, expect, test, vi } from "@/test";
 import { AnthropicTokenizer } from "./anthropic";
-import type { ProviderMessage } from "./base";
+import { BaseTokenizer, type ProviderMessage } from "./base";
 import { getTokenizer } from "./index";
 import { TiktokenTokenizer } from "./tiktoken";
 
@@ -157,6 +157,68 @@ describe("Tokenizers", () => {
       expect(openaiCount).toBeGreaterThan(0);
       const errorMargin = Math.max(anthropicCount, openaiCount) * 0.2;
       expect(Math.abs(anthropicCount - openaiCount)).toBeLessThan(errorMargin);
+    });
+  });
+
+  describe("per-message memoization", () => {
+    // A tokenizer that records how many times the (uncached) encoder ran, so we
+    // can assert repeated message content is served from the memo.
+    class CountingTokenizer extends BaseTokenizer {
+      computeCalls = 0;
+
+      protected computeMessageTokens(encodableText: string): number {
+        this.computeCalls++;
+        return encodableText.length;
+      }
+    }
+
+    test("encodes repeated message content only once", () => {
+      const tokenizer = new CountingTokenizer();
+      const first = tokenizer.countTokens({ role: "user", content: "hello" });
+      // A different object with identical content must hit the memo.
+      const second = tokenizer.countTokens({ role: "user", content: "hello" });
+
+      expect(second).toBe(first);
+      expect(tokenizer.computeCalls).toBe(1);
+
+      // Distinct content is encoded on its own.
+      tokenizer.countTokens({ role: "user", content: "different" });
+      expect(tokenizer.computeCalls).toBe(2);
+    });
+
+    test("counts each unique message in an array, reusing repeats", () => {
+      const tokenizer = new CountingTokenizer();
+      const messages: ProviderMessage[] = [
+        { role: "user", content: "a" },
+        { role: "assistant", content: "b" },
+        { role: "user", content: "a" }, // repeat of the first
+      ];
+
+      tokenizer.countTokens(messages);
+
+      // Only the two unique (role, content) pairs are encoded.
+      expect(tokenizer.computeCalls).toBe(2);
+    });
+
+    test("does not expire cached counts over time (deterministic)", () => {
+      // Token counts are pure, so the memo must not use the cache manager's
+      // default 1h TTL — otherwise long conversations re-encode every hour.
+      vi.useFakeTimers();
+      try {
+        const tokenizer = new CountingTokenizer();
+        const message: ProviderMessage = { role: "user", content: "hello" };
+
+        tokenizer.countTokens(message);
+        expect(tokenizer.computeCalls).toBe(1);
+
+        // Advance well past the manager's 1h default TTL.
+        vi.advanceTimersByTime(2 * 60 * 60 * 1000);
+
+        tokenizer.countTokens(message);
+        expect(tokenizer.computeCalls).toBe(1); // still served from the memo
+      } finally {
+        vi.useRealTimers();
+      }
     });
   });
 });
