@@ -2166,6 +2166,7 @@ export function ChatPageContent({
 
   return (
     <AppsProvider
+      key={conversationId ?? "new"}
       apps={mcpApps}
       onShowInPanel={() => openRightPanelTab("apps" as RightPanelTab)}
       onClosePanel={closeRightPanel}

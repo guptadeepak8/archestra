@@ -150,18 +150,23 @@ export function RightSidePanel({
 }
 
 /**
- * Renders the single open app (`openToolCallId`) directly in the panel — no
- * portal. Mounts a `surface="panel"` app section from the shared apps list;
- * switching the open app remounts via the key. The app-endpoint is rebuilt from
- * the list entry, so owned apps need no extra data and external apps use the
- * conversation's agent (or their pinned install).
+ * Renders the single hosted app (`panelToolCallId`) directly in the panel.
+ * Switching the hosted app remounts via the key; the app-endpoint is rebuilt from
+ * the list entry (owned apps need no extra data, external apps use the agent).
  */
 function PanelAppHost({ agentId }: { agentId?: string }) {
-  const { apps, openToolCallId } = useApps();
-  const app = apps.find((a) => a.toolCallId === openToolCallId);
+  const { apps, panelToolCallId } = useApps();
+  const app = apps.find((a) => a.toolCallId === panelToolCallId);
   if (!app) {
     return null;
   }
+
+  // An external app drives the agent gateway; mounting a fresh iframe against an
+  // empty agent (`/api/mcp/`) would 404, so bail like the inline render's guard.
+  if (!app.appId && !app.mcpServerId && !agentId) {
+    return null;
+  }
+
   return (
     <McpAppSection
       key={app.toolCallId}
@@ -174,6 +179,8 @@ function PanelAppHost({ agentId }: { agentId?: string }) {
       appVersion={app.version}
       toolName={app.toolName ?? ""}
       toolCallId={app.toolCallId}
+      rawOutput={app.rawOutput ?? undefined}
+      toolInput={app.toolInput ?? undefined}
     />
   );
 }
