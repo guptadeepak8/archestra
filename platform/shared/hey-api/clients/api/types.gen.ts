@@ -31134,8 +31134,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: XaiChatCompletionRequest;
-            processedRequest?: XaiChatCompletionRequest | null;
+            request: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: OpenAiChatCompletionResponse | {
                 error: string;
             };
@@ -31217,9 +31221,6 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            /**
-             * https://developers.openai.com/api/reference/resources/responses/methods/create
-             */
             request: {
                 model: string;
                 input?: string | Array<{
@@ -31252,10 +31253,9 @@ export type GetInteractionsResponses = {
                 top_p?: number | null;
                 user?: string;
                 [key: string]: unknown;
+            } | {
+                [key: string]: unknown;
             };
-            /**
-             * https://developers.openai.com/api/reference/resources/responses/methods/create
-             */
             processedRequest?: {
                 model: string;
                 input?: string | Array<{
@@ -31287,6 +31287,8 @@ export type GetInteractionsResponses = {
                 }>;
                 top_p?: number | null;
                 user?: string;
+                [key: string]: unknown;
+            } | {
                 [key: string]: unknown;
             } | null;
             response: {
@@ -31418,12 +31420,16 @@ export type GetInteractionsResponses = {
                 input: string | Array<string>;
                 dimensions?: number;
                 encoding_format?: 'float' | 'base64';
+            } | {
+                [key: string]: unknown;
             };
             processedRequest?: {
                 model: string;
                 input: string | Array<string>;
                 dimensions?: number;
                 encoding_format?: 'float' | 'base64';
+            } | {
+                [key: string]: unknown;
             } | null;
             response: {
                 object: 'list';
@@ -31521,12 +31527,16 @@ export type GetInteractionsResponses = {
                 input: string | Array<string>;
                 dimensions?: number;
                 encoding_format?: 'float' | 'base64';
+            } | {
+                [key: string]: unknown;
             };
             processedRequest?: {
                 model: string;
                 input: string | Array<string>;
                 dimensions?: number;
                 encoding_format?: 'float' | 'base64';
+            } | {
+                [key: string]: unknown;
             } | null;
             response: {
                 object: 'list';
@@ -31619,8 +31629,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: GeminiGenerateContentRequest;
-            processedRequest?: GeminiGenerateContentRequest | null;
+            request: GeminiGenerateContentRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: GeminiGenerateContentRequest | {
+                [key: string]: unknown;
+            } | null;
             response: GeminiGenerateContentResponse | {
                 error: string;
             };
@@ -31702,8 +31716,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: AnthropicMessagesRequest;
-            processedRequest?: AnthropicMessagesRequest | null;
+            request: AnthropicMessagesRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: AnthropicMessagesRequest | {
+                [key: string]: unknown;
+            } | null;
             response: AnthropicMessagesResponse | {
                 error: string;
             };
@@ -31966,6 +31984,8 @@ export type GetInteractionsResponses = {
                     [key: string]: string;
                 };
                 _isStreaming?: boolean;
+            } | {
+                [key: string]: unknown;
             };
             processedRequest?: {
                 modelId: string;
@@ -32148,6 +32168,8 @@ export type GetInteractionsResponses = {
                     [key: string]: string;
                 };
                 _isStreaming?: boolean;
+            } | {
+                [key: string]: unknown;
             } | null;
             response: {
                 $metadata?: {
@@ -32292,8 +32314,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: XaiChatCompletionRequest;
-            processedRequest?: XaiChatCompletionRequest | null;
+            request: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: CerebrasChatCompletionResponse | {
                 error: string;
             };
@@ -32375,8 +32401,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: XaiChatCompletionRequest;
-            processedRequest?: XaiChatCompletionRequest | null;
+            request: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: MistralChatCompletionResponse | {
                 error: string;
             };
@@ -32458,8 +32488,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: XaiChatCompletionRequest;
-            processedRequest?: XaiChatCompletionRequest | null;
+            request: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: PerplexityChatCompletionResponse | {
                 error: string;
             };
@@ -32541,8 +32575,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: XaiChatCompletionRequest;
-            processedRequest?: XaiChatCompletionRequest | null;
+            request: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: GroqChatCompletionResponse | {
                 error: string;
             };
@@ -32624,8 +32662,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: XaiChatCompletionRequest;
-            processedRequest?: XaiChatCompletionRequest | null;
+            request: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: XaiChatCompletionResponse | {
                 error: string;
             };
@@ -32707,8 +32749,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: OpenrouterChatCompletionRequest;
-            processedRequest?: OpenrouterChatCompletionRequest | null;
+            request: OpenrouterChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: OpenrouterChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: OpenrouterChatCompletionResponse | {
                 error: string;
             };
@@ -32790,8 +32836,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: VllmChatCompletionRequest;
-            processedRequest?: VllmChatCompletionRequest | null;
+            request: VllmChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: VllmChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: VllmChatCompletionResponse | {
                 error: string;
             };
@@ -32871,8 +32921,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: OllamaChatCompletionRequest;
-            processedRequest?: OllamaChatCompletionRequest | null;
+            request: OllamaChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: OllamaChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: OllamaChatCompletionResponse | {
                 error: string;
             };
@@ -32952,8 +33006,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: CohereChatRequest;
-            processedRequest?: CohereChatRequest | null;
+            request: CohereChatRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: CohereChatRequest | {
+                [key: string]: unknown;
+            } | null;
             response: CohereChatResponse | {
                 error: string;
             };
@@ -33035,8 +33093,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: ZhipuaiChatCompletionRequest;
-            processedRequest?: ZhipuaiChatCompletionRequest | null;
+            request: ZhipuaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: ZhipuaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: ZhipuaiChatCompletionResponse | {
                 error: string;
             };
@@ -33118,8 +33180,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: DeepSeekChatCompletionRequest;
-            processedRequest?: DeepSeekChatCompletionRequest | null;
+            request: DeepSeekChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: DeepSeekChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: DeepSeekChatCompletionResponse | {
                 error: string;
             };
@@ -33488,6 +33554,8 @@ export type GetInteractionsResponses = {
                 max_tokens?: number | null;
                 stream?: boolean | null;
                 [key: string]: unknown;
+            } | {
+                [key: string]: unknown;
             };
             processedRequest?: {
                 model: string;
@@ -33776,6 +33844,8 @@ export type GetInteractionsResponses = {
                 max_tokens?: number | null;
                 stream?: boolean | null;
                 [key: string]: unknown;
+            } | {
+                [key: string]: unknown;
             } | null;
             response: {
                 id: string;
@@ -33925,8 +33995,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: MinimaxChatCompletionRequest;
-            processedRequest?: MinimaxChatCompletionRequest | null;
+            request: MinimaxChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: MinimaxChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: MinimaxChatCompletionResponse | {
                 error: string;
             };
@@ -34008,8 +34082,12 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            request: XaiChatCompletionRequest;
-            processedRequest?: XaiChatCompletionRequest | null;
+            request: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            };
+            processedRequest?: XaiChatCompletionRequest | {
+                [key: string]: unknown;
+            } | null;
             response: {
                 id: string;
                 choices: Array<{
@@ -34158,9 +34236,6 @@ export type GetInteractionsResponses = {
             authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
             authenticatedAppId: string | null;
             authenticatedAppName: string | null;
-            /**
-             * https://developers.openai.com/api/reference/resources/responses/methods/create
-             */
             request: {
                 model: string;
                 input?: string | Array<{
@@ -34193,10 +34268,9 @@ export type GetInteractionsResponses = {
                 top_p?: number | null;
                 user?: string;
                 [key: string]: unknown;
+            } | {
+                [key: string]: unknown;
             };
-            /**
-             * https://developers.openai.com/api/reference/resources/responses/methods/create
-             */
             processedRequest?: {
                 model: string;
                 input?: string | Array<{
@@ -34228,6 +34302,8 @@ export type GetInteractionsResponses = {
                 }>;
                 top_p?: number | null;
                 user?: string;
+                [key: string]: unknown;
+            } | {
                 [key: string]: unknown;
             } | null;
             response: {
@@ -34771,8 +34847,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: XaiChatCompletionRequest;
-        processedRequest?: XaiChatCompletionRequest | null;
+        request: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: OpenAiChatCompletionResponse | {
             error: string;
         };
@@ -34854,9 +34934,6 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        /**
-         * https://developers.openai.com/api/reference/resources/responses/methods/create
-         */
         request: {
             model: string;
             input?: string | Array<{
@@ -34889,10 +34966,9 @@ export type GetInteractionResponses = {
             top_p?: number | null;
             user?: string;
             [key: string]: unknown;
+        } | {
+            [key: string]: unknown;
         };
-        /**
-         * https://developers.openai.com/api/reference/resources/responses/methods/create
-         */
         processedRequest?: {
             model: string;
             input?: string | Array<{
@@ -34924,6 +35000,8 @@ export type GetInteractionResponses = {
             }>;
             top_p?: number | null;
             user?: string;
+            [key: string]: unknown;
+        } | {
             [key: string]: unknown;
         } | null;
         response: {
@@ -35055,12 +35133,16 @@ export type GetInteractionResponses = {
             input: string | Array<string>;
             dimensions?: number;
             encoding_format?: 'float' | 'base64';
+        } | {
+            [key: string]: unknown;
         };
         processedRequest?: {
             model: string;
             input: string | Array<string>;
             dimensions?: number;
             encoding_format?: 'float' | 'base64';
+        } | {
+            [key: string]: unknown;
         } | null;
         response: {
             object: 'list';
@@ -35158,12 +35240,16 @@ export type GetInteractionResponses = {
             input: string | Array<string>;
             dimensions?: number;
             encoding_format?: 'float' | 'base64';
+        } | {
+            [key: string]: unknown;
         };
         processedRequest?: {
             model: string;
             input: string | Array<string>;
             dimensions?: number;
             encoding_format?: 'float' | 'base64';
+        } | {
+            [key: string]: unknown;
         } | null;
         response: {
             object: 'list';
@@ -35256,8 +35342,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: GeminiGenerateContentRequest;
-        processedRequest?: GeminiGenerateContentRequest | null;
+        request: GeminiGenerateContentRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: GeminiGenerateContentRequest | {
+            [key: string]: unknown;
+        } | null;
         response: GeminiGenerateContentResponse | {
             error: string;
         };
@@ -35339,8 +35429,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: AnthropicMessagesRequest;
-        processedRequest?: AnthropicMessagesRequest | null;
+        request: AnthropicMessagesRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: AnthropicMessagesRequest | {
+            [key: string]: unknown;
+        } | null;
         response: AnthropicMessagesResponse | {
             error: string;
         };
@@ -35603,6 +35697,8 @@ export type GetInteractionResponses = {
                 [key: string]: string;
             };
             _isStreaming?: boolean;
+        } | {
+            [key: string]: unknown;
         };
         processedRequest?: {
             modelId: string;
@@ -35785,6 +35881,8 @@ export type GetInteractionResponses = {
                 [key: string]: string;
             };
             _isStreaming?: boolean;
+        } | {
+            [key: string]: unknown;
         } | null;
         response: {
             $metadata?: {
@@ -35929,8 +36027,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: XaiChatCompletionRequest;
-        processedRequest?: XaiChatCompletionRequest | null;
+        request: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: CerebrasChatCompletionResponse | {
             error: string;
         };
@@ -36012,8 +36114,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: XaiChatCompletionRequest;
-        processedRequest?: XaiChatCompletionRequest | null;
+        request: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: MistralChatCompletionResponse | {
             error: string;
         };
@@ -36095,8 +36201,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: XaiChatCompletionRequest;
-        processedRequest?: XaiChatCompletionRequest | null;
+        request: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: PerplexityChatCompletionResponse | {
             error: string;
         };
@@ -36178,8 +36288,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: XaiChatCompletionRequest;
-        processedRequest?: XaiChatCompletionRequest | null;
+        request: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: GroqChatCompletionResponse | {
             error: string;
         };
@@ -36261,8 +36375,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: XaiChatCompletionRequest;
-        processedRequest?: XaiChatCompletionRequest | null;
+        request: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: XaiChatCompletionResponse | {
             error: string;
         };
@@ -36344,8 +36462,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: OpenrouterChatCompletionRequest;
-        processedRequest?: OpenrouterChatCompletionRequest | null;
+        request: OpenrouterChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: OpenrouterChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: OpenrouterChatCompletionResponse | {
             error: string;
         };
@@ -36427,8 +36549,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: VllmChatCompletionRequest;
-        processedRequest?: VllmChatCompletionRequest | null;
+        request: VllmChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: VllmChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: VllmChatCompletionResponse | {
             error: string;
         };
@@ -36508,8 +36634,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: OllamaChatCompletionRequest;
-        processedRequest?: OllamaChatCompletionRequest | null;
+        request: OllamaChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: OllamaChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: OllamaChatCompletionResponse | {
             error: string;
         };
@@ -36589,8 +36719,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: CohereChatRequest;
-        processedRequest?: CohereChatRequest | null;
+        request: CohereChatRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: CohereChatRequest | {
+            [key: string]: unknown;
+        } | null;
         response: CohereChatResponse | {
             error: string;
         };
@@ -36672,8 +36806,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: ZhipuaiChatCompletionRequest;
-        processedRequest?: ZhipuaiChatCompletionRequest | null;
+        request: ZhipuaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: ZhipuaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: ZhipuaiChatCompletionResponse | {
             error: string;
         };
@@ -36755,8 +36893,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: DeepSeekChatCompletionRequest;
-        processedRequest?: DeepSeekChatCompletionRequest | null;
+        request: DeepSeekChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: DeepSeekChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: DeepSeekChatCompletionResponse | {
             error: string;
         };
@@ -37125,6 +37267,8 @@ export type GetInteractionResponses = {
             max_tokens?: number | null;
             stream?: boolean | null;
             [key: string]: unknown;
+        } | {
+            [key: string]: unknown;
         };
         processedRequest?: {
             model: string;
@@ -37413,6 +37557,8 @@ export type GetInteractionResponses = {
             max_tokens?: number | null;
             stream?: boolean | null;
             [key: string]: unknown;
+        } | {
+            [key: string]: unknown;
         } | null;
         response: {
             id: string;
@@ -37562,8 +37708,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: MinimaxChatCompletionRequest;
-        processedRequest?: MinimaxChatCompletionRequest | null;
+        request: MinimaxChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: MinimaxChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: MinimaxChatCompletionResponse | {
             error: string;
         };
@@ -37645,8 +37795,12 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        request: XaiChatCompletionRequest;
-        processedRequest?: XaiChatCompletionRequest | null;
+        request: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        };
+        processedRequest?: XaiChatCompletionRequest | {
+            [key: string]: unknown;
+        } | null;
         response: {
             id: string;
             choices: Array<{
@@ -37795,9 +37949,6 @@ export type GetInteractionResponses = {
         authMethod?: 'provider_key' | 'virtual_key' | 'passthrough_virtual_key' | 'jwks' | 'oauth_client_credentials' | 'oauth_user' | 'internal' | 'unknown';
         authenticatedAppId: string | null;
         authenticatedAppName: string | null;
-        /**
-         * https://developers.openai.com/api/reference/resources/responses/methods/create
-         */
         request: {
             model: string;
             input?: string | Array<{
@@ -37830,10 +37981,9 @@ export type GetInteractionResponses = {
             top_p?: number | null;
             user?: string;
             [key: string]: unknown;
+        } | {
+            [key: string]: unknown;
         };
-        /**
-         * https://developers.openai.com/api/reference/resources/responses/methods/create
-         */
         processedRequest?: {
             model: string;
             input?: string | Array<{
@@ -37865,6 +38015,8 @@ export type GetInteractionResponses = {
             }>;
             top_p?: number | null;
             user?: string;
+            [key: string]: unknown;
+        } | {
             [key: string]: unknown;
         } | null;
         response: {
