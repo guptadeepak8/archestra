@@ -4,12 +4,6 @@ category: Archestra Platform
 order: 3
 ---
 
-<!--
-Check ../docs_writer_prompt.md before changing this file.
-
-This document is human-built, shouldn't be updated with AI. Don't change anything here.
--->
-
 The Archestra Platform can be deployed using Docker for development and testing, or Helm for production environments. Both deployment methods provide access to the Admin UI on port 3000 and the API on port 9000.
 
 ## Docker Deployment
@@ -594,7 +588,7 @@ To use an external database, specify the connection string via the `ARCHESTRA_DA
 
 ##### pgvector Extension (Knowledge Base Feature)
 
-The [Knowledge Base](/docs/platform-knowledge-bases) enterprise feature requires the [pgvector](https://github.com/pgvector/pgvector) PostgreSQL extension for vector similarity search. The database user specified in `ARCHESTRA_DATABASE_URL` must have permission to run `CREATE EXTENSION vector`, which typically requires **superuser** privileges.
+The [Knowledge Base](/docs/platform-knowledge) enterprise feature requires the [pgvector](https://github.com/pgvector/pgvector) PostgreSQL extension for vector similarity search. The database user specified in `ARCHESTRA_DATABASE_URL` must have permission to run `CREATE EXTENSION vector`, which typically requires **superuser** privileges.
 
 **Cloud-managed databases:**
 
@@ -772,7 +766,7 @@ For supported resources, examples, and the contributor flow, see the [Crossplane
 
 The following environment variables can be used to configure Archestra Platform.
 
-### Application & API Configuration
+### Database
 
 - **`ARCHESTRA_DATABASE_URL`** - PostgreSQL connection string for the database.
   - Format: `postgresql://user:password@host:5432/database`
@@ -788,6 +782,8 @@ The following environment variables can be used to configure Archestra Platform.
   - Default: `30000` (30s)
   - Set to `0` to disable the timeout entirely.
   - Defense-in-depth against pathological queries: any statement running longer than this is cancelled by PostgreSQL so a single slow query can't hold a connection open indefinitely. Raise it if you have legitimate long-running analytical queries.
+
+### Application & API Configuration
 
 - **`ARCHESTRA_API_BASE_URL`** - Archestra API Base URL(s) for connecting to Archestra's LLM Proxy, MCP Gateway and A2A Gateway.
 
@@ -822,9 +818,32 @@ The following environment variables can be used to configure Archestra Platform.
   - Default: `false`
   - Values: `true`, `false`
 
+### Code Sandbox
+
+- **`ARCHESTRA_CODE_RUNTIME_ENABLED`** - Enables the code runtime — the per-conversation [code sandbox](./platform-code-sandbox) where agents run shell commands and Python, execute skill scripts, and run agent hooks. Needs a Dagger runner host (below) to run; without one the feature stays off. When off, `run_command` and the other sandbox tools are unavailable and skills cannot execute.
+  - Default: `false`
+  - Values: `true`, `false`
+
+- **`ARCHESTRA_CODE_RUNTIME_DAGGER_RUNNER_HOST`** - Address of the Dagger engine that materializes sandboxes, for example `tcp://dagger-engine:8080` or a `kube-pod://` URL. Required for the code runtime: if it is unset or unreachable, `ARCHESTRA_CODE_RUNTIME_ENABLED` has no effect and the sandbox stays disabled.
+  - Default: unset
+  - Values: a `tcp://` or `kube-pod://` URL
+
 - **`ARCHESTRA_CODE_RUNTIME_BASE_PREBUILT`** - Set `true` only when `ARCHESTRA_DAGGER_RUNTIME_IMAGE` points at a pre-baked sandbox base image that already contains the apt toolbelt, the `uv` virtualenv, and the default Python dependencies. The runtime then skips the per-sandbox apt/`uv` build steps and instead verifies a provenance marker on the image — failing loudly if the image isn't the baked base — so an engine with restricted egress no longer needs to reach `ghcr.io`, the Debian mirrors, or PyPI when it materializes a sandbox; only the registry hosting the base image. Leave `false` (the default) to build the base from the stock runtime image on first use.
   - Default: `false`
   - Values: `true`, `false`
+
+- **`ARCHESTRA_SKILLS_SANDBOX_CPU_LIMIT_SECONDS`** - CPU-time cap for a single sandbox command.
+  - Default: `30`
+- **`ARCHESTRA_SKILLS_SANDBOX_MEMORY_LIMIT_BYTES`** - Memory cap for the sandbox container.
+  - Default: `1073741824` (1 GiB)
+- **`ARCHESTRA_SKILLS_SANDBOX_WALL_CLOCK_SECONDS`** - Wall-clock cap for a single command; a caller-supplied timeout is clamped to this.
+  - Default: `120`
+- **`ARCHESTRA_SKILLS_SANDBOX_OUTPUT_BYTES_LIMIT`** - Maximum captured stdout/stderr per command; output beyond this is truncated.
+  - Default: `262144` (256 KiB)
+- **`ARCHESTRA_SKILLS_SANDBOX_ARTIFACT_BYTES_LIMIT`** - Maximum size of a file the sandbox can export to the conversation's Files panel.
+  - Default: `16777216` (16 MiB)
+
+### Skills Marketplace
 
 - **`ARCHESTRA_GIT_BINARY_PATH`** - Path to the `git` binary. The public marketplace endpoint shells out to `git http-backend` (CGI) for clone/pull traffic — make sure the binary is present in the backend container image.
   - Default: `git`
@@ -1414,9 +1433,9 @@ See [Slack](/docs/platform-slack) for setup instructions.
 
 ### Knowledge Base Configuration
 
-These environment variables configure the [Knowledge Base](/docs/platform-knowledge-bases). Knowledge Bases use a built-in RAG stack powered by pgvector for document chunking, embedding, and hybrid search.
+These environment variables configure the [Knowledge Base](/docs/platform-knowledge). Knowledge Bases use a built-in RAG stack powered by pgvector for document chunking, embedding, and hybrid search.
 
-- **Embedding and reranker API keys** are configured via LLM Provider Keys in **Settings > Knowledge**, not via environment variables. See [Embedding Configuration](/docs/platform-knowledge-bases#embedding-configuration) and [Reranking Configuration](/docs/platform-knowledge-bases#reranking-configuration) for how to pick the key and model.
+- **Embedding and reranker API keys** are configured via LLM Provider Keys in **Settings > Knowledge**, not via environment variables. See [Embedding Configuration](/docs/platform-knowledge#embedding-configuration) and [Reranking Configuration](/docs/platform-knowledge#reranking-configuration) for how to pick the key and model.
 
 - **`ARCHESTRA_KNOWLEDGE_BASE_CONNECTOR_SYNC_MAX_DURATION_SECONDS`** - Maximum duration for a single connector sync run before it stops and triggers a continuation.
   - Default: `3300` (55 minutes)
